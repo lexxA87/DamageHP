@@ -20,25 +20,5 @@ while (true)
     swordDamage.SetMagic(key == '1' || key == '3');
     swordDamage.SetFlaming(key == '2' || key == '3');
 
-    //if (key == "0")
-    //{
-    //    swordDamage.CalculateDamage();
-    //}
-    //else if (key == "1")
-    //{
-    //    swordDamage.SetMagic(true);
-    //}
-    //else if (key == "2")
-    //{
-    //    swordDamage.SetFlaming(true);
-    //}
-    //else if (key == "3")
-    //{
-    //    swordDamage.SetMagic(true);
-    //    swordDamage.SetFlaming(true);
-    //}
-    //else return;
-
     Console.WriteLine("\nRolled " + swordDamage.Roll + " for " + swordDamage.Damage + " HP\n");
-    Console.Write('\n');
 }
