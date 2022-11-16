@@ -5,7 +5,10 @@
 
         public SwordDamage(int roll)
         {
-            this.roll = roll;
+            Roll = roll;
+            Magic = false;
+            Flaming = false;
+            CalculateDamage();
         }
 
         public const int BASE_DAMAGE = 3;
@@ -63,11 +66,11 @@
             {
                 Damage = (int)(Roll * 1.75) + BASE_DAMAGE + FLAME_DAMAGE;
             }
-            else if (magic)
+            else if (Magic)
             {
                 Damage = (int)(Roll * 1.75) + BASE_DAMAGE;
             }
-            else if (flaming)
+            else if (Flaming)
             {
                 Damage = (int)(Roll * 1) + BASE_DAMAGE + FLAME_DAMAGE;
             }
