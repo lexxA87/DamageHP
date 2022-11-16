@@ -2,39 +2,80 @@
 {
     public class SwordDamage
     {
+
+        public SwordDamage(int roll)
+        {
+            this.roll = roll;
+        }
+
         public const int BASE_DAMAGE = 3;
         public const int FLAME_DAMAGE = 2;
 
-        public int Roll;
-        public decimal MagicMultiplier = 1M;
-        public int FlamingDamage = 0;
-        public int Damage;
+        /// <summary>
+        /// int Damage is calculated sum all damages
+        /// </summary>
+        public int Damage { get; private set; }
 
-        public void CalculateDamage()
+        private int roll;
+        /// <summary>
+        /// int Roll is sum three dice
+        /// </summary>
+        public int Roll
         {
-            Damage = (int)(Roll * MagicMultiplier) + BASE_DAMAGE + FlamingDamage;
+            get { return roll; }
+            set
+            {
+                roll = value;
+                CalculateDamage();
+            }
         }
 
-        public void SetMagic(bool isMagic)
+        private bool flaming;
+        /// <summary>
+        /// bool Flaming for calculate flaming damage
+        /// </summary>
+        public bool Flaming
         {
-            if (isMagic)
+            get { return flaming; }
+            set
             {
-                MagicMultiplier = 1.75M;
+                flaming = value;
+                CalculateDamage();
+            }
+        }
+
+        private bool magic;
+        /// <summary>
+        /// bool Magic for calculate magic damage
+        /// </summary>
+        public bool Magic
+        {
+            get { return magic; }
+            set
+            {
+                magic = value;
+                CalculateDamage();
+            }
+        }
+        private void CalculateDamage()
+        {
+            if (Magic && Flaming)
+            {
+                Damage = (int)(Roll * 1.75) + BASE_DAMAGE + FLAME_DAMAGE;
+            }
+            else if (magic)
+            {
+                Damage = (int)(Roll * 1.75) + BASE_DAMAGE;
+            }
+            else if (flaming)
+            {
+                Damage = (int)(Roll * 1) + BASE_DAMAGE + FLAME_DAMAGE;
             }
             else
             {
-                MagicMultiplier = 1M;
+                Damage = (int)(Roll * 1) + BASE_DAMAGE;
             }
-            CalculateDamage();
         }
 
-        public void SetFlaming(bool isFlaming)
-        {
-            CalculateDamage();
-            if (isFlaming)
-            {
-                Damage += FLAME_DAMAGE;
-            }
-        }
     }
 }
